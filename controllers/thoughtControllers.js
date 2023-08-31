@@ -1,6 +1,7 @@
 const { Thought, User, Reaction } = require('../models');
 
 module.exports = {
+    // get all thoughts
     async getThoughts(req, res) {
         try {
             const thoughts = await Thought.find();
@@ -9,6 +10,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    // get single thought by id
     async getSingleThought(req, res) {
         try {
             const thought = await Thought.findOne({ _id: req.params.thoughtId });
@@ -44,6 +46,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    //update thought by id
     async updateThought(req, res) {
         try {
             const thought = await Thought.findOneAndUpdate(
@@ -62,6 +65,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    // delete thought by id
     async deleteThought(req, res) {
         try {
             const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
@@ -76,11 +80,6 @@ module.exports = {
                 { new: true }
             );
 
-            if (!user) {
-                return res
-                    .status(404)
-                    .json({ message: 'Thought deleted but no user with this id!' });
-            }
 
             res.json({ message: 'Thought successfully deleted!' });
         } catch (err) {

@@ -32,7 +32,7 @@ const thoughtSchema = new Schema(
     }
 );
 
-// virtual retrieves reaction length
+// virtual retrieves reaction count
 thoughtSchema.virtual('reactionCount').get(function () {
     return this.reactions.length
 })
