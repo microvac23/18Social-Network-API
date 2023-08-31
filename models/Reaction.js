@@ -1,28 +1,28 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types } = require('mongoose');
 const dayjs = require('dayjs')
 
 // Schema to create reaction model
 const reactionSchema = new Schema(
     {
-        reactionID: {
+        reactionId: {
             type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId()
+            default: () => new Types.ObjectId(),
         },
         reactionBody: {
             type: String,
             required: true,
             minlength: 1,
-            maxlength: 280
+            maxlength: 280,
         },
         username: {
-            upvotes: String,
-            required: true
+            type: String,
+            required: true,
         },
         createdAt: {
             type: Date,
             default: Date.now,
             // formats date
-            get: (date) => dayjs(date).format('DD/MM/YY')
+            get: (date) => dayjs(date).format('DD/MM/YY'),
         },
     },
     {
@@ -33,7 +33,4 @@ const reactionSchema = new Schema(
     }
 );
 
-// Initialize our Reaction model
-const Reaction = model('reaction', reactionSchema);
-
-module.exports = Reaction;
+module.exports = reactionSchema;
