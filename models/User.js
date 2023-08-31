@@ -1,25 +1,28 @@
 const { Schema, model } = require('mongoose');
 
-// Schema to create Post model
+// Schema to create user model
 const userSchema = new Schema(
     {
         username: {
-            upvotes: Number,
-            bookmarks: Number,
+            type: String,
+            unique: true,
+            required: true,
+            trim: true
         },
         email: {
             type: String,
-            minLength: 15,
-            maxLength: 500,
-        },
-        thoughts: {
-            type: Boolean,
-            default: false,
-        },
-        friends: {
-            type: Date,
+            unique: true,
             required: true,
+            trim: true
         },
+        thoughts: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Thought'
+        }],
+        friends: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }],
     },
     {
         toJSON: {
@@ -29,7 +32,11 @@ const userSchema = new Schema(
     }
 );
 
-// Initialize our Reaction model
+userSchema.virtual('friendCount').get(function () {
+    return this.friends.length
+})
+
+// Initialize our user model
 const User = model('user', userSchema);
 
 module.exports = User;
