@@ -25,6 +25,12 @@ module.exports = {
         }
     },
     // create a new thought
+    // example data
+    // {
+    // "thoughtText": "Here's a cool thought...",
+    // "username": "lernantino",
+    // "userId": "5edff358a0fcb779aa7b118b"
+    // }
     async createThought(req, res) {
         try {
             const thought = await Thought.create(req.body);

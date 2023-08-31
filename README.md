@@ -21,4 +21,4 @@ Given a social network API...
 
 ## Examples
 
-Tutorial Video:
+Tutorial Video: https://drive.google.com/file/d/1gXX11km6_8nzbgpHFyzUN1mT9QV1131I/view
